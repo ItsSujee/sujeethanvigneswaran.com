@@ -21,9 +21,3 @@ jobs:
 
     - name: Push Docker image to Docker Hub
       run: docker push itssujee/sujeethanvigneswaran.com:${{ github.sha }}
-
-    - name: Deploy to server
-      run: |
-        docker stop sujeethanvigneswaran.com || true
-        docker rm sujeethanvigneswaran.com || true
-        docker run -d --name sujeethanvigneswaran.com -p 80:80 itssujee/sujeethanvigneswaran.com

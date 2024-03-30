@@ -14,10 +14,10 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Build Docker image
-      run: docker build -t itssujee/sujeethanvigneswaran.com:${{ github.sha }} .
+      run: docker build -t itssujee/sujeethanvigneswaran.com:latest .
 
     - name: Log in to Docker Hub
       run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u itssujee --password-stdin
 
     - name: Push Docker image to Docker Hub
-      run: docker push itssujee/sujeethanvigneswaran.com:${{ github.sha }}
+      run: docker push itssujee/sujeethanvigneswaran.com:latest

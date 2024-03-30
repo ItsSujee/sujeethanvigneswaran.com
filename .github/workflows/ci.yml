@@ -1,0 +1,29 @@
+name: Deploy to Docker Hub
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Build Docker image
+      run: docker build -t itssujee/sujeethanvigneswaran.com .
+
+    - name: Log in to Docker Hub
+      run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+    - name: Push Docker image to Docker Hub
+      run: docker push itssujee/sujeethanvigneswaran.com
+
+    - name: Deploy to server
+      run: |
+        docker stop sujeethanvigneswaran.com || true
+        docker rm sujeethanvigneswaran.com || true
+        docker run -d --name sujeethanvigneswaran.com -p 80:80 itssujee/sujeethanvigneswaran.com

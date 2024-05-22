@@ -1,11 +1,1 @@
-/* Minimal CSS Credit: Morgan Gallant https://github.com/morgangallant */
-
-body {
-    max-width: 34rem;
-    margin: 64px auto;
-    padding: 0 2rem;
-}
-
-li {
-    margin: 10px 0;
-}
+body{max-width:34rem;margin:64px auto;padding:0 2rem}li{margin:10px 0}
